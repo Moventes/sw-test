@@ -9,9 +9,11 @@ self.addEventListener('install', function (event) {
     );
 });
 
+
+// cache or network
 self.addEventListener('fetch', function (event) {
     event.respondWith(caches.match(event.request).then(function (response) {
-        console.log('FETCH SW : ', event.request.url);
+        console.log('SW FETCH : ', event.request.url);
         // caches.match() always resolves
         // but in case of success response will have value
         if (response !== undefined) {
@@ -38,11 +40,15 @@ self.addEventListener('fetch', function (event) {
 });
 
 
+
+
+
+// push notification
 self.addEventListener('push', function (event) {
     const payload = event.data ? event.data.text() : 'no payload';
-    console.log('push :', payload);
+    console.log('sw push :', payload);
     event.waitUntil(
-        self.registration.showNotification('bouuuuuuu', {
+        self.registration.showNotification('SW-TEST', {
             body: payload,
         })
     );
