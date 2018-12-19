@@ -1,4 +1,4 @@
-const withServiceWorkers = true;
+const withServiceWorkers = false;
 
 if (withServiceWorkers) {
     if ('serviceWorker' in navigator) {
